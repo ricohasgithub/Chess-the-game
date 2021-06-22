@@ -74,4 +74,6 @@ class Bishop(Piece):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
-        pass
+        if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
+            return True
+        return False
