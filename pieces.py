@@ -28,7 +28,7 @@ class Pawn(Piece):
         self.type = "P"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position):
+        if check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -42,4 +42,22 @@ class Pawn(Piece):
         elif not self.first and capture:
             if abs(n_position.y - self.position.y) == 1 and abs(n_position.x - self.position.x) == 1:
                 return True
+        return False
+
+class Knight(Piece):
+
+    def __init__(self, position, color):
+        super(Pawn, self).__init__(position, color)
+        self.value = 3
+        self.type = "N"
+
+    def move(self, n_position, capture):
+        if check_move_legal(n_position, capture):
+            self.position = n_position
+
+    def check_move_legal(self, n_position, capture):
+        if abs(n_position.y - self.position.y) == 2 and abs(n_position.x - self.position.x) == 1:
+            return True
+        elif abs(n_position.y - self.position.y) == 1 and abs(n_position.x - self.position.x) == 2:
+            return True
         return False
