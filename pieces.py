@@ -77,3 +77,21 @@ class Bishop(Piece):
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
             return True
         return False
+
+class Rook(Piece):
+
+    def __init__(self, position, color):
+        super(Rook, self).__init__(position, color)
+        self.value = 5
+        self.type = "R"
+
+    def move(self, n_position, capture):
+        if check_move_legal(n_position, capture):
+            self.position = n_position
+
+    def check_move_legal(self, n_position, capture):
+        if abs(n_position.y - self.position.y) <= 7 and abs(n_position.x - self.position.x) == 0:
+            return True
+        elif abs(n_position.x - self.position.x) <= 7 and abs(n_position.y - self.position.y) == 0:
+            return False
+        return False
