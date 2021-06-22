@@ -90,9 +90,9 @@ class Rook(Piece):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
-        if abs(n_position.y - self.position.y) <= 7 and abs(n_position.x - self.position.x) == 0:
+        if abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
             return True
-        elif abs(n_position.x - self.position.x) <= 7 and abs(n_position.y - self.position.y) == 0:
+        elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
             return False
         return False
 
@@ -110,8 +110,28 @@ class Queen(Piece):
     def check_move_legal(self, n_position, capture):
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
             return True
-        elif abs(n_position.y - self.position.y) <= 7 and abs(n_position.x - self.position.x) == 0:
+        elif abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
             return True
-        elif abs(n_position.x - self.position.x) <= 7 and abs(n_position.y - self.position.y) == 0:
+        elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
+            return False
+        return False
+
+class King(Piece):
+
+    def __init__(self, position, color):
+        super(Queen, self).__init__(position, color)
+        self.value = 10
+        self.type = "K"
+
+    def move(self, n_position, capture):
+        if check_move_legal(n_position, capture):
+            self.position = n_position
+
+    def check_move_legal(self, n_position, capture):
+        if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x) and abs(n_position.y - self.position.y) == 1:
+            return True
+        elif abs(n_position.y - self.position.y) == 1 and n_position.x == self.position.x:
+            return True
+        elif abs(n_position.x - self.position.x) == 1 and n_position.y == self.position.y:
             return False
         return False
