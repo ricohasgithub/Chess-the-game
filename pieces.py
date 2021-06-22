@@ -47,7 +47,7 @@ class Pawn(Piece):
 class Knight(Piece):
 
     def __init__(self, position, color):
-        super(Pawn, self).__init__(position, color)
+        super(Knight, self).__init__(position, color)
         self.value = 3
         self.type = "N"
 
@@ -61,3 +61,17 @@ class Knight(Piece):
         elif abs(n_position.y - self.position.y) == 1 and abs(n_position.x - self.position.x) == 2:
             return True
         return False
+
+class Bishop(Piece):
+
+    def __init__(self, position, color):
+        super(Bishop, self).__init__(position, color)
+        self.value = 3
+        self.type = "B"
+
+    def move(self, n_position, capture):
+        if check_move_legal(n_position, capture):
+            self.position = n_position
+
+    def check_move_legal(self, n_position, capture):
+        pass
