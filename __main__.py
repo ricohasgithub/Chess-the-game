@@ -1,6 +1,8 @@
 
 import pygame
 
+from pieces import Position
+
 from pieces import Piece
 from pieces import Pawn
 from pieces import Knight
@@ -12,7 +14,7 @@ from pieces import King
 from board import Board
 
 TILESIZE = 50
-BOARD_POS = (10, 10)
+BOARD_POS = (100, 100)
 
 def create_board_surf():
     board_surf = pygame.Surface((TILESIZE*8, TILESIZE*8))
@@ -70,7 +72,6 @@ def draw_selector(screen, piece, x, y):
         pygame.draw.rect(screen, (255, 0, 0, 50), rect, 2)
 
 def draw_drag(screen, board, selected_piece, font):
-    print(selected_piece)
     if selected_piece:
         piece, x, y = get_square_under_mouse(board)
         if x != None:

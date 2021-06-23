@@ -124,7 +124,7 @@ class Queen(Piece):
 class King(Piece):
 
     def __init__(self, position, color, img_path):
-        super(Queen, self).__init__(position, color, img_path)
+        super(King, self).__init__(position, color, img_path)
         self.value = 10
         self.type = "K"
 

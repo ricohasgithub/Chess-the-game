@@ -29,13 +29,16 @@ class Board():
         except IndexError: pass
         return None, None, None
 
-    def draw_pieces(self, screen, piece):
+    def draw_pieces(self, screen, selected_piece):
 
-        sx, sy = piece.position.x, piece.position.y
+        sx, sy = None, None
+        if selected_piece:
+            piece = selected_piece
+            sx, sy = piece.position.x, piece.position.y
 
         for y in range(self.y_dim):
             for x in range(self.x_dim): 
-                piece = board[y][x]
+                piece = self.board[y][x]
                 if piece:
                     selected = x == sx and y == sy
                     pos = pygame.Rect(self.board_pos[0] + x * self.tilesize + 1, self.board_pos[1] + y * self.tilesize + 1, self.tilesize, self.tilesize)
