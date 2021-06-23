@@ -14,7 +14,7 @@ from pieces import King
 from board import Board
 
 TILESIZE = 50
-BOARD_POS = (100, 100)
+BOARD_POS = (100, 40)
 
 board = []
 
@@ -55,7 +55,7 @@ def create_board_surf():
     for y in range(8):
         for x in range(8):
             rect = pygame.Rect(x*TILESIZE, y*TILESIZE, TILESIZE, TILESIZE)
-            pygame.draw.rect(board_surf, pygame.Color('darkgrey' if dark else 'beige'), rect)
+            pygame.draw.rect(board_surf, pygame.Color('#393939' if dark else 'white'), rect)
             dark = not dark
         dark = not dark
     return board_surf
@@ -69,9 +69,12 @@ selected_piece = None
 drop_pos = None
 
 while True:
+
     piece, x, y = chess_board.get_square_under_mouse()
     events = pygame.event.get()
+
     for e in events:
+
         if e.type == pygame.QUIT:
             break
         if e.type == pygame.MOUSEBUTTONDOWN:
@@ -80,14 +83,20 @@ while True:
         if e.type == pygame.MOUSEBUTTONUP:
             if drop_pos:
                 piece, old_x, old_y = selected_piece
-                if piece.check_move_legal(Position(new_y, new_x), False):
+                if piece.check_move_legal(Position(drop_pos[0], drop_pos[1]), False):
+                    
+                    print(drop_pos[0], drop_pos[1])
+                    print(piece.check_move_legal(Position(drop_pos[0], drop_pos[1]), False))
+
+                    piece.move(Position(drop_pos[0], drop_pos[1]), False)
                     board[old_y][old_x] = None
                     new_x, new_y = drop_pos
                     board[new_y][new_x] = piece
+                    
             selected_piece = None
             drop_pos = None
 
-    screen.fill(pygame.Color('black'))
+    screen.fill(pygame.Color('#393939'))
     screen.blit(board_surf, BOARD_POS)
     chess_board.draw_pieces(screen, selected_piece)
     drop_pos = chess_board.draw_drag(screen, selected_piece)

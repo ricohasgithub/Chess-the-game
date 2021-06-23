@@ -14,10 +14,10 @@ class Piece():
         self.color = color
         self.img_path = img_path
         self.img = pygame.image.load(self.img_path)
-        self.img = pygame.transform.scale(self.img, (50, 50))
+        self.img = pygame.transform.scale(self.img, (40, 40))
 
     def move(self, n_position, capture):
-        if (check_move_legal(n_position, capture)):
+        if (self.check_move_legal(n_position, capture)):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -33,7 +33,7 @@ class Pawn(Piece):
         self.type = "P"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -57,7 +57,7 @@ class Knight(Piece):
         self.type = "N"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -75,7 +75,7 @@ class Bishop(Piece):
         self.type = "B"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -91,7 +91,7 @@ class Rook(Piece):
         self.type = "R"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -109,7 +109,7 @@ class Queen(Piece):
         self.type = "Q"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -129,7 +129,7 @@ class King(Piece):
         self.type = "K"
 
     def move(self, n_position, capture):
-        if check_move_legal(n_position, capture):
+        if self.check_move_legal(n_position, capture):
             self.position = n_position
 
     def check_move_legal(self, n_position, capture):
