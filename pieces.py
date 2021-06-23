@@ -17,8 +17,7 @@ class Piece():
         self.img = pygame.transform.scale(self.img, (40, 40))
 
     def move(self, n_position, capture):
-        if (self.check_move_legal(n_position, capture)):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
         pass
@@ -33,20 +32,42 @@ class Pawn(Piece):
         self.type = "P"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
-        if self.first:
-            if abs(n_position.y - self.position.y) <= 2 and n_position.x == self.position.x:
-                self.first = False
-                return True
-        elif not self.first and not capture:
-            if abs(n_position.y - self.position.y) == 1 and n_position.x == self.position.x:
-                return True
-        elif not self.first and capture:
-            if abs(n_position.y - self.position.y) == 1 and abs(n_position.x - self.position.x) == 1:
-                return True
+  
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
+
+        if self.color == "white":
+            if self.first:
+                if (n_position.x - self.position.x == -2 or n_position.x - self.position.x == -1) and n_position.y == self.position.y:
+                    self.first = False
+                    return True
+                if capture and n_position.x - self.position.x == -1 and (n_position.y - self.position.y) == 1:
+                    self.first = False
+                    return True
+            elif not self.first and not capture:
+                if n_position.x - self.position.x == -1 and n_position.y == self.position.y:
+                    return True
+            elif not self.first and capture:
+                if n_position.x - self.position.x == -1 and (n_position.y - self.position.y) == 1:
+                    return True                
+        if self.color == "black":
+            if self.first:
+                if (n_position.x - self.position.x == 2 or n_position.x - self.position.x == 1) and n_position.y == self.position.y:
+                    self.first = False
+                    return True
+                if capture and n_position.x - self.position.x == 1 and (n_position.y - self.position.y) == 1:
+                    self.first = False
+                    return True
+            elif not self.first and not capture:
+                if n_position.x - self.position.x == 1 and n_position.y == self.position.y:
+                    return True
+            elif not self.first and capture:
+                if n_position.x - self.position.x == 1 and (n_position.y - self.position.y) == 1:
+                    return True
         return False
 
 class Knight(Piece):
@@ -57,10 +78,14 @@ class Knight(Piece):
         self.type = "N"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
+
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
+
         if abs(n_position.y - self.position.y) == 2 and abs(n_position.x - self.position.x) == 1:
             return True
         elif abs(n_position.y - self.position.y) == 1 and abs(n_position.x - self.position.x) == 2:
@@ -75,8 +100,7 @@ class Bishop(Piece):
         self.type = "B"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
@@ -91,10 +115,14 @@ class Rook(Piece):
         self.type = "R"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
+
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
+
         if abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
             return True
         elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
@@ -109,10 +137,14 @@ class Queen(Piece):
         self.type = "Q"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
+
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
+
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
             return True
         elif abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
@@ -129,10 +161,14 @@ class King(Piece):
         self.type = "K"
 
     def move(self, n_position, capture):
-        if self.check_move_legal(n_position, capture):
-            self.position = n_position
+        self.position = n_position
 
     def check_move_legal(self, n_position, capture):
+
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
+
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x) and abs(n_position.y - self.position.y) == 1:
             return True
         elif abs(n_position.y - self.position.y) == 1 and n_position.x == self.position.x:
