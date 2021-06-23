@@ -1,4 +1,15 @@
+
 import pygame
+
+from pieces import Piece
+from pieces import Pawn
+from pieces import Knight
+from pieces import Bishop
+from pieces import Rook
+from pieces import Queen
+from pieces import King
+
+from board import Board
 
 TILESIZE = 50
 BOARD_POS = (10, 10)
@@ -59,6 +70,7 @@ def draw_selector(screen, piece, x, y):
         pygame.draw.rect(screen, (255, 0, 0, 50), rect, 2)
 
 def draw_drag(screen, board, selected_piece, font):
+    print(selected_piece)
     if selected_piece:
         piece, x, y = get_square_under_mouse(board)
         if x != None:
@@ -102,7 +114,7 @@ def main():
                 selected_piece = None
                 drop_pos = None
 
-        screen.fill(pygame.Color('grey'))
+        screen.fill(pygame.Color('black'))
         screen.blit(board_surf, BOARD_POS)
         draw_pieces(screen, board, font, selected_piece)
         draw_selector(screen, piece, x, y)

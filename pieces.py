@@ -14,6 +14,7 @@ class Piece():
         self.color = color
         self.img_path = img_path
         self.img = pygame.image.load(self.img_path)
+        self.img = pygame.transform.scale(self.img, (50, 50))
 
     def move(self, n_position, capture):
         if (check_move_legal(n_position, capture)):
