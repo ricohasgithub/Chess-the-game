@@ -81,6 +81,9 @@ class Knight(Piece):
         self.type = "N"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -103,9 +106,15 @@ class Bishop(Piece):
         self.type = "B"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         if abs(n_position.y - self.position.y) == abs(n_position.x - self.position.x):
             return True
         return False
@@ -118,6 +127,9 @@ class Rook(Piece):
         self.type = "R"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -140,6 +152,9 @@ class Queen(Piece):
         self.type = "Q"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
@@ -164,6 +179,9 @@ class King(Piece):
         self.type = "K"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
