@@ -1,4 +1,6 @@
 
+import pygame
+
 class Position():
 
     def __init__(self, x, y):
@@ -7,9 +9,11 @@ class Position():
 
 class Piece():
 
-    def __init__(self, position, color):
+    def __init__(self, position, color, img_path):
         self.position = position
         self.color = color
+        self.img_path = img_path
+        self.img = pygame.image.load(self.img_path)
 
     def move(self, n_position, capture):
         if (check_move_legal(n_position, capture)):
@@ -20,8 +24,8 @@ class Piece():
 
 class Pawn(Piece):
 
-    def __init__(self, position, color):
-        super(Pawn, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Pawn, self).__init__(position, color, img_path)
         # Track if it is the first move
         self.first = True
         self.value = 1
@@ -46,8 +50,8 @@ class Pawn(Piece):
 
 class Knight(Piece):
 
-    def __init__(self, position, color):
-        super(Knight, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Knight, self).__init__(position, color, img_path)
         self.value = 3
         self.type = "N"
 
@@ -64,8 +68,8 @@ class Knight(Piece):
 
 class Bishop(Piece):
 
-    def __init__(self, position, color):
-        super(Bishop, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Bishop, self).__init__(position, color, img_path)
         self.value = 3
         self.type = "B"
 
@@ -80,8 +84,8 @@ class Bishop(Piece):
 
 class Rook(Piece):
 
-    def __init__(self, position, color):
-        super(Rook, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Rook, self).__init__(position, color, img_path)
         self.value = 5
         self.type = "R"
 
@@ -98,8 +102,8 @@ class Rook(Piece):
 
 class Queen(Piece):
 
-    def __init__(self, position, color):
-        super(Queen, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Queen, self).__init__(position, color, img_path)
         self.value = 9
         self.type = "Q"
 
@@ -118,8 +122,8 @@ class Queen(Piece):
 
 class King(Piece):
 
-    def __init__(self, position, color):
-        super(Queen, self).__init__(position, color)
+    def __init__(self, position, color, img_path):
+        super(Queen, self).__init__(position, color, img_path)
         self.value = 10
         self.type = "K"
 
