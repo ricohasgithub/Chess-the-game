@@ -32,6 +32,9 @@ class Pawn(Piece):
         self.type = "P"
 
     def move(self, n_position, capture):
+        temp = n_position.y
+        n_position.y = n_position.x
+        n_position.x = temp
         self.position = n_position
 
     def check_move_legal(self, n_position, capture):
