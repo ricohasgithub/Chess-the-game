@@ -33,7 +33,7 @@ class Board():
 
         sx, sy = None, None
         if selected_piece:
-            piece = selected_piece
+            piece = selected_piece[0]
             sx, sy = piece.position.x, piece.position.y
 
         for y in range(self.y_dim):
@@ -47,14 +47,14 @@ class Board():
     def draw_drag(self, screen, selected_piece):
 
         if selected_piece:
-            piece, x, y = get_square_under_mouse()
+            piece, x, y = self.get_square_under_mouse()
 
             if x != None:
                 rect = (self.board_pos[0] + x * self.tilesize, self.board_pos[1] + y * self.tilesize, self.tilesize, self.tilesize)
                 pygame.draw.rect(screen, (0, 255, 0, 50), rect, 2)
 
             pos = pygame.Vector2(pygame.mouse.get_pos())
-            screen.blit(piece.img, piece.img.get_rect(center=pos.center))
+            screen.blit(selected_piece[0].img, selected_piece[0].img.get_rect(center=pos))
 
-            selected_rect = pygame.Rect(self.board_pos[0] + piece.pos.x * self.tilesize, self.board_pos[1] + piece.pos.y * self.tilesize, self.tilesize, self.tilesize)
+            selected_rect = pygame.Rect(self.board_pos[0] + selected_piece[0].position.x * self.tilesize, self.board_pos[1] + selected_piece[0].position.y * self.tilesize, self.tilesize, self.tilesize)
             return (x, y)

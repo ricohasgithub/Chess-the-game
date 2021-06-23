@@ -80,9 +80,10 @@ while True:
         if e.type == pygame.MOUSEBUTTONUP:
             if drop_pos:
                 piece, old_x, old_y = selected_piece
-                board[old_y][old_x] = 0
-                new_x, new_y = drop_pos
-                board[new_y][new_x] = piece
+                if piece.check_move_legal(Position(new_y, new_x), False):
+                    board[old_y][old_x] = None
+                    new_x, new_y = drop_pos
+                    board[new_y][new_x] = piece
             selected_piece = None
             drop_pos = None
 
