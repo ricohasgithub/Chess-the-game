@@ -145,11 +145,10 @@ class Rook(Piece):
 
         if abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
 
-            print(self.position.y, n_position.y)
-            for i in range(self.position.y + 1, n_position.y - 1):
+            for i in range(self.position.y + 1, n_position.y):
                 if board.board[n_position.x][i]:
                     return False
-            for i in range(n_position.y + 1, self.position.y - 1):
+            for i in range(n_position.y + 1, self.position.y):
                 if board.board[n_position.x][i]:
                     return False
 
@@ -160,11 +159,10 @@ class Rook(Piece):
             
         elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
 
-            print(self.position.x, n_position.x)
-            for i in range(self.position.x + 1, n_position.x - 1):
+            for i in range(self.position.x + 1, n_position.x):
                 if board.board[i][n_position.y]:
                     return False
-            for i in range(n_position.x + 1, self.position.x - 1):
+            for i in range(n_position.x + 1, self.position.x):
                 if board.board[i][n_position.y]:
                     return False
 
