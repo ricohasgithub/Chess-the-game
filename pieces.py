@@ -14,12 +14,12 @@ class Piece():
         self.color = color
         self.img_path = img_path
         self.img = pygame.image.load(self.img_path)
-        self.img = pygame.transform.scale(self.img, (40, 30))
+        self.img = pygame.transform.scale(self.img, (35, 40))
 
     def move(self, n_position, capture):
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
         pass
 
 class Pawn(Piece):
@@ -37,8 +37,9 @@ class Pawn(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
   
+        capture = False
         temp = n_position.y
         n_position.y = n_position.x
         n_position.x = temp
@@ -86,7 +87,7 @@ class Knight(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
 
         temp = n_position.y
         n_position.y = n_position.x
@@ -111,7 +112,7 @@ class Bishop(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
         temp = n_position.y
         n_position.y = n_position.x
         n_position.x = temp
@@ -132,7 +133,7 @@ class Rook(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
 
         temp = n_position.y
         n_position.y = n_position.x
@@ -157,7 +158,7 @@ class Queen(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
 
         temp = n_position.y
         n_position.y = n_position.x
@@ -184,7 +185,7 @@ class King(Piece):
         n_position.x = temp
         self.position = n_position
 
-    def check_move_legal(self, n_position, capture):
+    def check_move_legal(self, n_position, board):
 
         temp = n_position.y
         n_position.y = n_position.x

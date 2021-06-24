@@ -89,9 +89,6 @@ def main():
 
                     if piece.check_move_legal(Position(drop_pos[0], drop_pos[1]), False):
 
-                        print(drop_pos[0], drop_pos[1])
-                        print(piece.position.x, piece.position.y)
-
                         piece.move(Position(drop_pos[0], drop_pos[1]), False)
                         board[old_y][old_x] = None
                         new_x, new_y = drop_pos
