@@ -146,7 +146,7 @@ class Rook(Piece):
         if abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
             return True
         elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
-            return False
+            return True
         return False
 
 class Queen(Piece):
@@ -173,7 +173,7 @@ class Queen(Piece):
         elif abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
             return True
         elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
-            return False
+            return True
         return False
 
 class King(Piece):
@@ -200,5 +200,5 @@ class King(Piece):
         elif abs(n_position.y - self.position.y) == 1 and n_position.x == self.position.x:
             return True
         elif abs(n_position.x - self.position.x) == 1 and n_position.y == self.position.y:
-            return False
+            return True
         return False
