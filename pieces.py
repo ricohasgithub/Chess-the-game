@@ -144,9 +144,35 @@ class Rook(Piece):
         n_position.x = temp
 
         if abs(n_position.y - self.position.y) <= 7 and n_position.x == self.position.x:
-            return True
+
+            print(self.position.y, n_position.y)
+            for i in range(self.position.y + 1, n_position.y - 1):
+                if board.board[n_position.x][i]:
+                    return False
+            for i in range(n_position.y + 1, self.position.y - 1):
+                if board.board[n_position.x][i]:
+                    return False
+
+            if board.board[n_position.x][n_position.y] and board.board[n_position.x][n_position.y].color != self.color:
+                return True
+            elif not board.board[n_position.x][n_position.y]:
+                return True
+            
         elif abs(n_position.x - self.position.x) <= 7 and n_position.y == self.position.y:
-            return True
+
+            print(self.position.x, n_position.x)
+            for i in range(self.position.x + 1, n_position.x - 1):
+                if board.board[i][n_position.y]:
+                    return False
+            for i in range(n_position.x + 1, self.position.x - 1):
+                if board.board[i][n_position.y]:
+                    return False
+
+            if board.board[n_position.x][n_position.y] and board.board[n_position.x][n_position.y].color != self.color:
+                return True
+            elif not board.board[n_position.x][n_position.y]:
+                return True
+
         return False
 
 class Queen(Piece):
