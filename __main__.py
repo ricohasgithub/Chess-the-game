@@ -14,7 +14,7 @@ from pieces import King
 from board import Board
 
 TILESIZE = 50
-BOARD_POS = (100, 40)
+BOARD_POS = (120, 40)
 
 board = []
 

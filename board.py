@@ -10,7 +10,7 @@ class Board():
         self.y_dim = y_dim
 
         # Display settings
-        self.board_pos = (100, 40)
+        self.board_pos = (120, 40)
         self.tilesize = 50
 
     # Method to get either the board state is: ongoing, check, checkmate, stalemate
